@@ -1,0 +1,27 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+/webext
+/playwright
+
+# secrets for testing
+.env
+
+# ide and editor configuration
+.vscode
+
+# dependency directories
+node_modules
+
+# production distribution
+/dist
+
+# purgable, throw-away files
+/tmp
+/work
+/docs
+
+# developer notes
+/admin
+
+# miscellaneous
+.DS_Store

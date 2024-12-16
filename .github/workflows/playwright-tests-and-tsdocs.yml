@@ -1,0 +1,90 @@
+name: Run Playwright e2e tests and generate documentation
+
+on:
+    # Runs on pushes targeting the main branch
+    push:
+        branches: [main]
+
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+    group: "pages"
+    cancel-in-progress: false
+
+jobs:
+    # Build job: runs tsdocs and playwright tests, then uploads docs and playwright-report to Pages as an artifact
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v3
+
+            - name: Setup node environment
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "20"
+
+            - name: Configure Github Pages
+              uses: actions/configure-pages@v3
+
+            - name: Install xvfb
+              run: sudo apt-get update && sudo apt-get install -y xvfb
+
+            - name: Install node dependencies
+              run: npm i
+
+            - name: Run tsdocs on the src directory
+              run: npm run docs
+
+            - name: Install Playwright browsers
+              run: npx playwright install --with-deps
+
+            - name: Build the extension
+              run: npm run build:webext
+
+            - name: Run Playwright tests with xvfb
+              run: xvfb-run --auto-servernum --server-args='-screen 0 1280x1024x24' npx playwright test
+
+            - name: Build the artifact directory
+              run: |
+                  mkdir -p build_outputs_folder/
+                  cp -r docs build_outputs_folder/
+                  cp index.html build_outputs_folder/
+                  cp -r assets build_outputs_folder/
+            # Uncomment for debugging purposes
+            # cp -r playwright/playwright-report build_outputs_folder/
+            # cp -r playwright/test-results build_outputs_folder/
+
+            - name: List artifact directory contents
+              run: ls -l build_outputs_folder/*
+
+            - name: Upload the artifact to Pages
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: build_outputs_folder/
+
+    # Deployment job: deploys the artifact to GitHub Pages
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Download artifact from build
+              uses: actions/download-artifact@v4
+              with:
+                  name: github-pages
+                  path: .
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4

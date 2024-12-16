@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "moduleDetection": "force",
+        "esModuleInterop": true,
+        "lib": [
+            "DOM", // Adds type definitions for web browser APIs
+            "DOM.Iterable", // Extends DOM types with iterable protocol support
+            "ESNext", // Includes types for latest ECMAScript features
+            "WebWorker" // Adds type definitions for Web Worker APIs
+        ],
+        "allowSyntheticDefaultImports": true, // Enables default imports from modules without explicit default export
+        "noPropertyAccessFromIndexSignature": false, // correctss "TS4111: Property comes from an index signature" error
+        "skipLibCheck": true,
+        "declaration": true, // Generate .d.ts files
+        "sourceMap": true // Generate source maps
+    }
+}

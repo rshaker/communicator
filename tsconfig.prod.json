@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "declarationDir": "dist/src", // Force .d.ts files to be generated in the dist/src directory
+    },
+    // "include": ["src/**/*"],
+    // Prevent transpilation of unnecessary files
+    "include": ["src/index.ts"],
+    "exclude": ["node_modules", "test"]
+}

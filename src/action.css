@@ -1,0 +1,27 @@
+.menu_items {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+
+.menu_item {
+    display: grid;
+    grid-template-columns: 0px 150px 0px;
+    grid-template-rows: 30px;
+    cursor: pointer;
+}
+
+.menu_item:hover {
+    background-color: #c8c8c8;
+}
+
+.menu_item div {
+    margin: 6px;
+    overflow: hidden;
+}
+
+.separator {
+    width: 100%;
+    border-top: 1px solid #ddd;
+    margin: 5px 0;
+}

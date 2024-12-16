@@ -1,0 +1,11 @@
+{
+    "extension_name": {
+        "message": "Test extension for communicator library"
+    },
+    "extension_description": {
+        "message": "Example usage of the communicator library"
+    },
+    "action_title": {
+        "message": "communicator"
+    }
+}

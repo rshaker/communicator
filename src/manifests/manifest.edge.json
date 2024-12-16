@@ -1,0 +1,49 @@
+{
+    "manifest_version": 3,
+    "name": "__MSG_extension_name__",
+    "version": "{{VERSION}}",
+    "author": "Ron Shaker",
+    "description": "__MSG_extension_description__",
+    "default_locale": "en",
+    "action": {
+        "default_title": "__MSG_action_title__",
+        "default_icon": {
+            "38": "icons/icon-38.png",
+            "19": "icons/icon-19.png"
+        },
+        "default_popup": "action.html"
+    },
+    "icons": {
+        "16": "icons/icon-16.png",
+        "48": "icons/icon-48.png",
+        "128": "icons/icon-128.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "management",
+        "scripting",
+        "storage",
+        "tabs"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "externally_connectable": {
+        "matches": [
+            "<all_urls>"
+        ]
+    },
+    "content_scripts": [],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "images/*.png"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}

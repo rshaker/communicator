@@ -1,0 +1,49 @@
+{
+    /**
+     * These configurations are for adhoc testing on MacOS using system browsers.
+     * To test in a more isolated environment, use Playwright's hermetic browser installations 
+     * under the node_modules/playwright-core/.local-browsers directory.
+     *
+     * https://marketplace.visualstudio.com/items?itemName=firefox-devtools.vscode-firefox-debug
+     */
+    "configurations": [
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "chrome://extensions/",
+            "webRoot": "${workspaceFolder}",
+            "runtimeArgs": [
+                "--load-extension=${workspaceFolder}/webext/chrome"
+            ],
+            "userDataDir": "${workspaceFolder}/work/browsers/chrome",
+            "sourceMaps": true
+        },
+        {
+            "name": "Launch Edge",
+            "request": "launch",
+            "type": "msedge",
+            "url": "edge://extensions/",
+            "webRoot": "${workspaceFolder}",
+            "runtimeArgs": [
+                "--load-extension=${workspaceFolder}/webext/edge"
+            ],
+            "userDataDir": "${workspaceFolder}/work/browsers/edge",
+            "preLaunchTask": "Create edge directory",
+            "sourceMaps": true
+        },
+        {
+            "name": "Launch Firefox",
+            "request": "launch",
+            "type": "firefox",
+            "url": "about:debugging#/runtime/this-firefox",
+            "webRoot": "${workspaceFolder}",
+            "keepProfileChanges": true,
+            "profileDir": "${workspaceFolder}/work/browsers/firefox",
+            "firefoxExecutable": "/Applications/Firefox.app/Contents/MacOS/firefox",
+            "preferences": {
+                "extensions.htmlaboutaddons.recommendations.enabled": false
+            }
+        }
+    ]
+}

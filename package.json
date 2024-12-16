@@ -1,0 +1,78 @@
+{
+    "name": "@rshaker/communicator",
+    "version": "0.2.0",
+    "description": "Messaging support for inter-context communication",
+    "license": "MIT",
+    "author": {
+        "name": "Ron Shaker",
+        "email": "rshaker@gmail.com",
+        "url": "https://github.com/rshaker"
+    },
+    "bugs": {
+        "url": "https://github.com/rshaker/communicator/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rshaker/communicator.git"
+    },
+    "publishConfig": {},
+    "homepage": "https://github.com/rshaker/communicator",
+    "keywords": [
+        "library",
+        "asynchronous",
+        "messaging",
+        "javascript",
+        "browser",
+        "context",
+        "typescript",
+        "webpack"
+    ],
+    "scripts": {
+        "build:webext": "npm run clean:webext && webpack --mode development --config webpackExtension.config.js",
+        "build:webext:watch": "npm run clean:webext && webpack --mode development --watch --config webpackExtension.config.js",
+        "build:dev": "npm run clean:dist && webpack --mode development --config webpack.config.js",
+        "build:prod": "npm run clean:dist && webpack --mode production --config webpack.config.js",
+        "build:watch": "npm run clean:dist && webpack --mode development --watch --config webpack.config.js",
+        "clean": "npm run clean:browser && npm run clean:dist && npm run clean:webext && npm run clean:docs",
+        "clean:browser": "rimraf work/browsers",
+        "clean:docs": "rimraf docs",
+        "clean:dist": "rimraf dist",
+        "clean:webext": "rimraf webext",
+        "docs": "typedoc --out docs src",
+        "playwright:report": "playwright show-report playwright/playwright-report",
+        "playwright:test": "playwright test",
+        "playwright:test-ui": "playwright test --ui",
+        "test": "npm run playwright:test"
+    },
+    "main": "./dist/communicator.js",
+    "types": "./dist/src/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "devDependencies": {
+        "@playwright/test": "^1.49.1",
+        "@rshaker/context-detect": "^0.2.5",
+        "@types/chrome": "^0.0.287",
+        "@types/node": "^22.10.2",
+        "@types/webpack": "^5.28.5",
+        "copy-webpack-plugin": "^11.0.0",
+        "date-fns": "^4.1.0",
+        "dotenv": "^16.4.7",
+        "idb": "^8.0.2",
+        "rimraf": "^5.0.5",
+        "style-loader": "^4.0.0",
+        "ts-loader": "^9.0.0",
+        "ts-node": "^10.0.0",
+        "typedoc": "^0.28.4",
+        "typescript": "^5.0.0",
+        "uuid": "^11.0.3",
+        "webpack": "^5.0.0",
+        "webpack-cli": "^4.0.0"
+    },
+    "browserslist": [
+        "last 2 Chrome versions"
+    ],
+    "engines": {
+        "node": ">=22.12.0"
+    }
+}
