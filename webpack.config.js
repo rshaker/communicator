@@ -8,7 +8,6 @@ module.exports = (_env, argv) => {
 
     const entries = {
         communicator: "./src/index.ts",
-        telemetryExample: "./src/scripts/telemetryExample.ts",
     };
 
     return Object.keys(entries).map((entry) => ({

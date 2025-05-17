@@ -1,6 +1,6 @@
 {
     "name": "@rshaker/communicator",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Messaging support for inter-context communication",
     "license": "MIT",
     "author": {
