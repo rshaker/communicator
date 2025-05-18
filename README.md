@@ -1,12 +1,11 @@
 # Communicator
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue)
-![License](https://img.shields.io/github/license/rshaker/communicator)
 ![version](https://img.shields.io/github/package-json/v/rshaker/communicator)
 
 ## Overview
 
-Communicator provides a unified API for messaging between background scripts, content scripts, and extension pages, as well as pluggable storage providers. It is compatible with Chromium-based browsers.
+Communicator is an experimental, Node.js package for inter-context messaging in Chromium-based browsers. The library is designed to work in main, isolated, background, and extension page contexts. Persistent data storage is available from any of these contexts via either direct IndexedDB access, or by an asynchronous messaging-based API.
 
 ## Features
 
